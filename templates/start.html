@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <title>Car Price Prediction</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="..//static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="..//static/css2/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <!-- <style>
+        body {
+        background-image: url('/static/images/car.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+    </style> -->
+</head>
+
+<body>
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">CPP</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#">Home</a></li>
+            </ul>
+
+            <!-- <ul id="nav-mobile" class="sidenav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul> -->
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+
+
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <br><br>
+            <h1 class="header center orange-text">Car Price Prediction</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">Predict the probability of Car price
+                    <br>
+                </h5>
+            </div>
+
+            <div class="row">
+                <form action='/predict' method="POST" class="col s12">
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <label for="first_name"><b>Year</b></label>
+                            <br>
+                            <input id="first" name="Year" class="validate">
+                            <!-- <input id="first_name" name='Temperature' type="text" class="validate"> -->
+                        </div>
+                        <div class="input-field col s4">
+
+                            <label for="last_name"><b>What is the Showroom Price?(In lakhs) </b></label>
+                            <br>
+                            <input id="second" name="Present_Price" required="required" class="validate">
+                            <!-- <input id="last_name" name="Oxygen" type="text" class="validate"> -->
+
+                        </div>
+
+                        <div class="input-field col s4">
+                            <label for="_name"><b>How Many Kilometers Drived?</b></label>
+                            <br>
+                            <input id="third" name="Kms_Driven" required="required" class="validate">
+                            <!-- <input id="_name" name="Humidity" type="text" class="validate"> -->
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <label for="first_name"><b>How much owner previously had car(0/1/3)</b></label>
+                            <br>
+                            <input id="fourth" name="Owner" required="required" class="validate">
+                            <!-- <input id="first_name" name='Temperature' type="text" class="validate"> -->
+                        </div>
+                        <div class="input-field col s4">
+
+                            <label for="last_name"><b>Fuel type [Petrol or Diesel or CNG]</b></label>
+                            <br>
+                            <input name="Fuel_Type_Petrol" id="fuel" required="required" class="validate">
+                            
+                            
+                            <!-- <input id="second" name="Present_Price" required="required" class="validate"> -->
+
+                        </div>
+
+                        <div class="input-field col s4">
+                            <label for="_name"><b>Are you A Dealer or Individual</b></label>
+                            <br>
+                            <input name="Seller_Type_Individual" id="resea" required="required" class="validate">
+                            <!-- <input id="_name" name="Humidity" type="text" class="validate"> -->
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s3">
+                            <!-- <label for="first_name"><b>How much owner previously had car(0/1/3)</b></label>
+                            <br>
+                            <input id="fourth" name="Owner" required="required" class="validate"> -->
+                            <!-- <input id="first_name" name='Temperature' type="text" class="validate"> -->
+                        </div>
+                        <div class="input-field col s6">
+
+                            <label for="first_name"><b style="text-align: center;">Transmission type [Manual OR Auotomatic]</b></label>
+                            <br>
+                            <input name="Transmission_Mannual" id="research" required="required" class="validate">
+                            
+                            
+                            <!-- <input id="second" name="Present_Price" required="required" class="validate"> -->
+
+                        </div>
+                        
+
+                        <div class="input-field col s3">
+                            <!-- <label for="_name"><b>Are you A Dealer or Individual</b></label>
+                            <br>
+                            <input id="third" name="Kms_Driven" required="required" class="validate"> -->
+                            <!-- <input id="_name" name="Humidity" type="text" class="validate"> -->
+
+                        </div>
+
+                    </div>
+                    <div class="row center">
+
+                        <button id="sub" type="submit" class="btn-large waves-effect waves-light orange">Predict
+                            Probability</button>
+                    </div>
+                </form>
+            </div>
+
+            <br>
+            <center>
+            <h3 >{{ prediction_text }}<h3>
+            </center>
+            <br>
+
+        </div>
+    </div>
+
+
+    <br><br>
+    <footer class="page-footer orange">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Bio</h5>
+                    <p class="grey-text text-lighten-4">"Hi there! I'm the creator of a this machine learning model that
+                        has been deployed on Flask. With a passion for artificial intelligence and data science, I've
+                        spent
+                        countless hours developing and fine-tuning this remarkable model.</p>
+
+
+                </div>
+                <!-- <div class="col l3 s12">
+                    <h5 class="white-text">Settings</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Connect</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Anukul Srivastava</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src=".js/materialize.js"></script>
+    <script src="js/init.js"></script>
+
+</body>
+
+</html>
